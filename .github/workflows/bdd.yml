@@ -16,11 +16,11 @@ jobs:
           \"$CLIENT_ID\",\"client_secret\": \"$CLIENT_SECRET\" }" https://xray.cloud.getxray.app/api/v2/authenticate| tr -d '"')
       - name: Get Feature from Xray issue
         shell: bash
-        run: 'curl -H "Content-Type: application/json" -X GET -H "Authorization: Bearer ${{ steps.xray-token.outputs.XRAY_TOKEN }}" "https://xray.cloud.getxray.app/api/v2/export/cucumber?keys=$KEY" --output features.zip'
+        run: 'curl -H "Content-Type: application/json" -X GET -H "Authorization: Bearer ${{ steps.xray-token.outputs.XRAY_TOKEN }}" "https://xray.cloud.getxray.app/api/v2/export/cucumber?keys=$KEY" -o featuresRename.zip'
       - name: list files
-        run: ls -l features.zip
+        run: ls -l featuresRename.zip
       - name: Unzip feature file
-        run: "unzip -o features.zip"
+        run: "unzip -o featuresRename.zip -d ./cypress/e2e/features"
       - name: Checkout
         uses: actions/checkout@v3
       # Install NPM dependencies, cache them correctly
