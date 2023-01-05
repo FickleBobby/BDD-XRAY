@@ -24,9 +24,7 @@
   },
   "cypress-cucumber-preprocessor": {
     "json": {
-      "enabled": true,
-      "formatter": "cucumber-json-formatter",
-      "output": "cucumber-report.json"
+      "enabled": true
     }
   }
 }
