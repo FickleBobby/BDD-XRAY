@@ -20,7 +20,7 @@ jobs:
       - name: list files
         run: ls -l features.zip
       - name: Unzip feature file
-        run: "unzip -o features.zip -d ./cypress/e2e/features"
+        run: "unzip -o features.zip"
       - name: Checkout
         uses: actions/checkout@v3
       # Install NPM dependencies, cache them correctly
