@@ -4,6 +4,12 @@ jobs:
   cypress-run:
     runs-on: ubuntu-20.04
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
       - name: Get Xray Cloud API token
         env:
           CLIENT_ID: ${{ secrets.XRAY_CLIENT_ID }}
@@ -20,12 +26,6 @@ jobs:
         shell: bash
         run: 'curl -H "Content-Type: application/json" -X GET -H "Authorization: Bearer ${{ steps.xray-token.outputs.XRAY_TOKEN }}" "https://xray.cloud.getxray.app/api/v2/export/cucumber?keys=$KEY" -o featuresRename.zip'
       - name: list files
-        run: ls -l featuresRename.zip
+        run: ls
       - name: Unzip feature file
         run: "unzip -o featuresRename.zip -d ./cypress/e2e/features"
-      - name: Checkout
-        uses: actions/checkout@v3
-      # Install NPM dependencies, cache them correctly
-      # and run all Cypress tests
-      - name: Cypress run
-        uses: cypress-io/github-action@v5
