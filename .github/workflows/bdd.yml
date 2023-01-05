@@ -21,13 +21,12 @@ jobs:
       - name: Get Feature from Xray issue
         shell: bash
         run: 'curl -H "Content-Type: application/octet-stream" -X GET -H "Authorization: Bearer ${{ steps.xray-token.outputs.XRAY_TOKEN }}" "https://xray.cloud.getxray.app/api/v2/export/cucumber?keys=$KEYS" -o features.zip'
-      - name: list files
-        run: ls
-
       - name: Unzip feature file
         run: "unzip -o features.zip -d ./cypress/e2e/features"
       - name: Cypress run
         uses: cypress-io/github-action@v5
+      - name: list files
+        run: ls
       - name: upload artifacts
         uses: actions/upload-artifact@v3
         with:
