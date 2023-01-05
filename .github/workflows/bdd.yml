@@ -12,6 +12,8 @@ jobs:
         uses: actions/checkout@v3
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
+      - name: Echo path
+        run: echo "$PATH"
       - name: Get Xray Cloud API token
         id: xray-token
         shell: bash
