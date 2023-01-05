@@ -17,6 +17,8 @@ jobs:
       - name: Get Feature from Xray issue
         shell: bash
         run: 'curl -H "Content-Type: application/json" -X GET -H "Authorization: Bearer ${{ steps.xray-token.outputs.XRAY_TOKEN }}" "https://xray.cloud.getxray.app/api/v2/export/cucumber?keys=$KEY" --output features.zip'
+      - name: list files
+        run: ls
       - name: Unzip feature file
         run: "unzip -o features.zip -d ./cypress/e2e/features"
       - name: Checkout
