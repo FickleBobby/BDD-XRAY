@@ -16,7 +16,7 @@ jobs:
           \"$CLIENT_ID\",\"client_secret\": \"$CLIENT_SECRET\" }" https://xray.cloud.getxray.app/api/v1/authenticate| tr -d '"')
       - name: Get Feature from Xray issue
         shell: bash
-        run: 'curl -H "Content-Type: application/json" --output ./features.zip -X GET -H "Authorisation: Bearer ${{ steps.xray-token.outputs.XRAY_TOKEN }}" https://xray.cloud.getxray.app/api/v1/export/cucumber?keys=$KEY'
+        run: 'curl -H "Content-Type: application/json" --output features.zip -X GET -H "Authorisation: Bearer ${{ steps.xray-token.outputs.XRAY_TOKEN }}" https://xray.cloud.getxray.app/api/v1/export/cucumber?keys=$KEY'
       - name: Unzip feature file
         run: "unzip -o ./features.zip -d ./cypress/e2e/features"
       - name: Checkout
