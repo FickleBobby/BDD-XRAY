@@ -21,9 +21,9 @@ jobs:
         run: ls
       - name: upload artifacts
         uses: actions/upload-artifact@v3
-          with:
-            name: my-artifact
-            path: features.zip
+        with:
+          name: my-artifact
+          path: features.zip
       - name: Unzip feature file
         run: "unzip -o features.zip -d ./cypress/e2e/features"
       - name: Checkout
@@ -32,4 +32,3 @@ jobs:
       # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v5
-
