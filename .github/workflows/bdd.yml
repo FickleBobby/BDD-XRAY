@@ -18,7 +18,7 @@ jobs:
         shell: bash
         run: 'curl -H "Content-Type: application/json" --output features.zip -X GET -H "Authorisation: Bearer ${{ steps.xray-token.outputs.XRAY_TOKEN }}" https://xray.cloud.getxray.app/api/v1/export/cucumber?keys=$KEY'
       - name: Unzip feature file
-        run: "unzip -o ./features.zip -d ./cypress/e2e/features"
+        run: "unzip -o features.zip -d ./cypress/e2e/features"
       - name: Checkout
         uses: actions/checkout@v3
       # Install NPM dependencies, cache them correctly
