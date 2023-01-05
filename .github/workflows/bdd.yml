@@ -14,9 +14,11 @@ jobs:
         run: |
           echo ::set-output name=XRAY_TOKEN::$(curl -H "Content-Type: application/json" -X POST --data "{ \"client_id\":
           \"$CLIENT_ID\",\"client_secret\": \"$CLIENT_SECRET\" }" https://xray.cloud.getxray.app/api/v2/authenticate| tr -d '"')
+      - name: Xray token
+        run: echo ${{ steps.xray-token.outputs.XRAY_TOKEN }}
       - name: Get Feature from Xray issue
         shell: bash
-        run: 'curl -H "Content-Type: application/json" -X GET -H "Authorization: Bearer ${{ steps.xray-token.outputs.XRAY_TOKENXX }}" "https://xray.cloud.getxray.app/api/v2/export/cucumber?keys=$KEY" -o featuresRename.zip'
+        run: 'curl -H "Content-Type: application/json" -X GET -H "Authorization: Bearer ${{ steps.xray-token.outputs.XRAY_TOKEN }}" "https://xray.cloud.getxray.app/api/v2/export/cucumber?keys=$KEY" -o featuresRename.zip'
       - name: list files
         run: ls -l featuresRename.zip
       - name: Unzip feature file
