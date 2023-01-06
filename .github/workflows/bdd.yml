@@ -34,3 +34,5 @@ jobs:
         with:
           name: cypress
           path: ./cypress
+      - name: Format cucumber json
+        run: npm run poste2e
