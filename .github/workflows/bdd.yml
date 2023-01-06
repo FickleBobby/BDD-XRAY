@@ -12,8 +12,6 @@ jobs:
         uses: actions/checkout@v3
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
-      - name: Echo path
-        run: echo "$PATH"
       - name: Get Xray Cloud API token
         id: xray-token
         shell: bash
@@ -27,8 +25,6 @@ jobs:
         run: "unzip -o features.zip -d ./cypress/e2e/features"
       - name: Cypress run
         uses: cypress-io/github-action@v5
-      - name: list files
-        run: ls
       - name: upload artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -36,3 +32,6 @@ jobs:
           path: ./cypress
       - name: Format cucumber json
         run: npm run poste2e
+      - name: Import report into Xray
+        shell: bash
+        run: 'curl -H "Content-Type: application/json" -X POST -H "Authorization: Bearer ${{ steps.xray-token.outputs.XRAY_TOKEN }}"  --data @"cucumber-report.json" "https://xray.cloud.getxray.app/api/v2/import/execution/cucumber"'
