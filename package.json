@@ -19,12 +19,17 @@
   "dependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^15.0.0",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.1.5",
+    "@deepakvishwakarma/cucumber-json-formatter": "^0.0.3",
     "cypress": "^12.3.0",
     "typescript": "^4.9.4"
   },
   "cypress-cucumber-preprocessor": {
     "json": {
-      "enabled": true
+      "enabled": true,
+      "formatter": "node",
+      "args": [
+        "./node_modules/@deepakvishwakarma/cucumber-json-formatter/lib/main.js"
+      ]
     }
   }
 }
