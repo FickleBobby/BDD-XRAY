@@ -3,7 +3,7 @@ on: [push]
 env:
   CLIENT_ID: ${{ secrets.XRAY_CLIENT_ID }}
   CLIENT_SECRET: ${{ secrets.XRAY_CLIENT_SECRET }}
-  KEYS: BDDE-2
+  KEYS: BDDE-4
 jobs:
   cypress-run:
     runs-on: ubuntu-20.04
